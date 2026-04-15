@@ -9,7 +9,9 @@ woff
         message.textContent = "in woff.init().then()"
 
         const { domainId, userId, displayName } = woff.getProfile()
-        message.textContent = [domainId, userId, displayName].join(" / ")
+        woff.getProfile().then(({ domainId, userId, displayName }) =>
+            message.textContent = [domainId, userId, displayName].join(" / "))
+
 
         document.querySelector("#token").textContent = woff.getAccessToken()
 
