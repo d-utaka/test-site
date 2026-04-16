@@ -23,6 +23,8 @@ woff
 
 
 async function apiAccess() {
+    document.querySelector("#response").textContent = "button pushed " + `Bearer ${woff.getAccessToken()}`
+
     const response = await fetch("https://www.worksapis.com/v1.0/bots",
         {
             method: "GET",
@@ -32,7 +34,13 @@ async function apiAccess() {
         }
     )
 
-    const result = await response.json();
-    document.querySelector("#response").textContent = result
+    if (!response.ok) {
+        document.querySelector("#response").textContent = "Error!!!"
+
+    } else {
+        document.querySelector("#response").textContent = "response.ok"
+        const result = await response.json();
+        document.querySelector("#response").textContent = JSON.stringify(result)
+    }
 
 }
