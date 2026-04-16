@@ -19,3 +19,20 @@ woff
     .catch((err) => {
         console.log(err.code, err.message);
     })
+
+
+
+async function apiAccess() {
+    const response = await fetch("https://www.worksapis.com/v1.0/bots",
+        {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${woff.getAccessToken()}`
+            }
+        }
+    )
+
+    const result = await response.json();
+    document.querySelector("#response").textContent = result
+
+}
